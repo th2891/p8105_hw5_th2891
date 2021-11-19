@@ -124,5 +124,69 @@ results_df %>%
 ```
 
 
+## Problem 2
+write function to iterate across 'file' and use read_csv to import each file
+- end up with column of data sets where first column is first data set
+- then unnest that column and have weeks
+- tidy that result 
+    - separate file names to get control experiment, unique subject id, want long format (in wide format)
+- want organized data set where you can make spaghetti plot for each participant to see if there are differences between groups
 
 
+read_csv iteration 
+
+```{r}
+
+list_files = list.files("./data/zip_data/", pattern = ".csv")
+
+csv_file_names = 
+  list_files %>% 
+  set_names() %>% 
+  map_dfr(~read_csv(paste0("./data/zip_data/",.x), col_types = cols()),
+          .id = "file_name"
+      ) %>% 
+  mutate(
+    file_name = str_remove(file_name, "(?<=.).*"))
+  
+
+
+  mutate(
+    city_state = str_c(city, state),
+
+```
+
+
+
+
+## Problem 3
+
+```{r}
+library(tidyverse)
+
+set.seed(10)
+
+iris_with_missing = iris %>% 
+  map_df(~replace(.x, sample(1:150, 20), NA)) %>%
+  mutate(Species = as.character(Species))
+```
+
+write a function.
+```{r}
+fill_in_missing = function(vector){
+  if (is.numeric  ){
+    
+    
+  }
+  
+  if (is.character){
+    
+    
+  }
+  
+  
+}
+```
+
+check function pulling out columns 
+
+map accross each column and apply that same function
