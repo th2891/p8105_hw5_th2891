@@ -231,7 +231,6 @@ sum(is.na(iris_without_missing))
 ```
 
 
-map across each column and apply that same function
 
 
 
