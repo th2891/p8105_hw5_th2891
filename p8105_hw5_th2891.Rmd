@@ -221,22 +221,22 @@ fill_in_missing = function(vector){
    
 }
 
+fill_in_missing(iris_with_missing$species)
+fill_in_missing(iris_with_missing$sepal_length)
+
 
 ```
 
 
-map accross each column and apply that same function
+map across each column and apply that same function
 
 ```{r}
 
-iris_without_missing = 
+iris_without_missing =
   iris_with_missing %>% 
-  mutate(map(.x, fill_in_missing))
+  select_if(is.numeric) %>% 
+  map_dfc(., fill_in_missing)
 
-iris_with_missing %>% 
-   mutate(
-    na_function = map(iris_with_missing, fill_in_missing),
-    tidy_iris = map(na_function, broom::tidy))
 ```
 
 
