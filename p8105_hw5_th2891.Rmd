@@ -224,19 +224,15 @@ fill_in_missing = function(vector){
 fill_in_missing(iris_with_missing$species)
 fill_in_missing(iris_with_missing$sepal_length)
 
+iris_without_missing = map_df(iris_with_missing, fill_in_missing) %>% view
 
+
+sum(is.na(iris_without_missing))
 ```
 
 
 map across each column and apply that same function
 
-```{r}
 
-iris_without_missing =
-  iris_with_missing %>% 
-  select_if(is.numeric) %>% 
-  map_dfc(., fill_in_missing)
-
-```
 
 
